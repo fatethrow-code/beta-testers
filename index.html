@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FateThrow Beta - Test it. Break it. Keep What You Win.</title>
+<meta name="description" content="Join the FateThrow beta program. Get free in-game credits, stress-test the platform, and keep every naira you win. Real money. Real opponents. No algorithm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --dark: #0D0907;
+  --dark-surface: #1A120D;
+  --dark-card: #231811;
+  --brown-deep: #331B0F;
+  --brown-rich: #593515;
+  --gold: #F5CD95;
+  --gold-bright: #FFBB44;
+  --gold-dim: #C9A46C;
+  --cream: #FEF4E6;
+  --cream-soft: #FEFAF4;
+  --warm-white: #FFF8EE;
+  --text-primary: #FEF4E6;
+  --text-secondary: #C9A46C;
+  --text-muted: #8B7355;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(13, 9, 7, 0.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(245, 205, 149, 0.08);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-logo-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: var(--cream);
+}
+
+.nav-badge {
+  background: rgba(245, 205, 149, 0.12);
+  border: 1px solid rgba(245, 205, 149, 0.2);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* --- HERO --- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(89, 53, 21, 0.4) 0%, rgba(245, 205, 149, 0.08) 35%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  animation: fadeInUp 0.8s ease-out 0.1s both;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 205, 149, 0.08);
+  border: 1px solid rgba(245, 205, 149, 0.15);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+
+.hero-pill-dot {
+  width: 8px;
+  height: 8px;
+  background: #4ADE80;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 8vw, 100px);
+  line-height: 0.92;
+  letter-spacing: -1px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.hero-title .line-2 {
+  display: block;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold), var(--gold-dim));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-title .line-3 {
+  display: block;
+  font-size: 0.55em;
+  color: var(--text-secondary);
+  -webkit-text-fill-color: var(--text-secondary);
+  letter-spacing: 4px;
+  margin-top: 4px;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: var(--text-secondary);
+  max-width: 460px;
+  margin: 24px 0 36px;
+  line-height: 1.65;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  color: var(--dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  padding: 18px 48px;
+  border-radius: 60px;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 0 0 rgba(245, 205, 149, 0.3), 0 8px 32px rgba(245, 205, 149, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.5s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 40px rgba(245, 205, 149, 0.25), 0 12px 40px rgba(245, 205, 149, 0.2);
+}
+
+.cta-btn:hover::before { left: 100%; }
+
+.cta-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--dark);
+}
+
+.cta-note {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.cta-note span {
+  color: var(--gold-dim);
+}
+
+/* Hero visual — winner photo + phone overlay */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  padding: 20px;
+}
+
+.hero-winner-img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  filter: brightness(0.9) contrast(1.05);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* Floating phone in hero — mini version */
+.hero-phone-wrapper {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 160px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.7));
+}
+
+.hero-phone-wrapper .mini-phone {
+  background: #000;
+  border-radius: 20px;
+  padding: 6px;
+  border: 2px solid #333;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-phone-wrapper .mini-phone::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 14px;
+  background: #000;
+  border-radius: 0 0 10px 10px;
+  z-index: 3;
+}
+
+.hero-phone-wrapper .mini-phone img {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.hero-logo-float {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 130px;
+  z-index: 10;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+  animation: float 4s ease-in-out infinite 1s;
+}
+
+/* --- LIVE TICKER --- */
+.ticker-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 0;
+  background: var(--dark-surface);
+  border-top: 1px solid rgba(245, 205, 149, 0.06);
+  border-bottom: 1px solid rgba(245, 205, 149, 0.06);
+}
+
+.ticker {
+  display: flex;
+  gap: 48px;
+  animation: ticker-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+.ticker-item .name { color: var(--gold); }
+.ticker-item .amount { color: var(--cream); }
+.ticker-star { color: var(--gold-bright); font-size: 10px; }
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- SECTIONS --- */
+.section {
+  padding: 100px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 56px);
+  letter-spacing: 1px;
+  color: var(--cream);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 56px;
+}
+
+/* --- VALUE PROPS --- */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.value-card {
+  background: var(--dark-surface);
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.value-card:hover { background: var(--dark-card); }
+
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.value-card:hover::before { opacity: 1; }
+
+.value-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(245, 205, 149, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.value-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 1.5px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.value-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- HOW IT WORKS (split layout) --- */
+.how-section {
+  padding: 100px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.how-left {}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.steps-container::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), rgba(245, 205, 149, 0.1));
+}
+
+.step {
+  display: flex;
+  gap: 32px;
+  padding: 36px 0;
+  position: relative;
+}
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 50%;
+  background: var(--dark-surface);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: var(--gold);
+  position: relative;
+  z-index: 2;
+}
+
+.step-content h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 1.5px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.step-content p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+/* Phone mockup on right side */
+.how-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.phone-mockup {
+  position: relative;
+  width: 300px;
+}
+
+.phone-frame {
+  background: #000;
+  border-radius: 44px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 2px #1a1a1a,
+    0 0 0 4px #333,
+    0 0 0 5px #1a1a1a,
+    0 30px 80px rgba(0,0,0,0.6),
+    inset 0 0 4px rgba(255,255,255,0.05);
+  position: relative;
+}
+
+/* Dynamic Island notch */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 24px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 3;
+}
+
+/* Side button (power) */
+.phone-frame::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 120px;
+  width: 3px;
+  height: 48px;
+  background: #333;
+  border-radius: 0 2px 2px 0;
+}
+
+.phone-screen {
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+  background: #1A120D;
+}
+
+.phone-screen img {
+  width: 100%;
+  display: block;
+}
+
+/* Volume buttons */
+.phone-vol {
+  position: absolute;
+  left: -4px;
+  width: 3px;
+  background: #333;
+  border-radius: 2px 0 0 2px;
+}
+
+.phone-vol-1 { top: 100px; height: 24px; }
+.phone-vol-2 { top: 140px; height: 40px; }
+.phone-vol-3 { top: 190px; height: 40px; }
+
+.phone-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245, 205, 149, 0.1) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- SOCIAL PROOF BAR --- */
+.proof-bar {
+  background: var(--dark-surface);
+  border-top: 1px solid rgba(245, 205, 149, 0.06);
+  border-bottom: 1px solid rgba(245, 205, 149, 0.06);
+  padding: 48px 24px;
+}
+
+.proof-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.proof-stat { text-align: center; }
+
+.proof-stat .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.proof-stat .label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* --- WHAT YOU GET (3x2 grid) --- */
+.perks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.perk {
+  background: var(--dark-surface);
+  border: 1px solid rgba(245, 205, 149, 0.06);
+  border-radius: 16px;
+  padding: 36px 28px;
+  transition: all 0.3s;
+}
+
+.perk:hover {
+  border-color: rgba(245, 205, 149, 0.15);
+  transform: translateY(-4px);
+}
+
+.perk-emoji {
+  font-size: 36px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.perk h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.perk p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* --- WINNER BANNER --- */
+.winner-banner {
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 24px;
+}
+
+.winner-banner-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 400px;
+}
+
+.winner-banner-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.winner-banner-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.winner-banner-content {
+  background: var(--dark-surface);
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.winner-banner-content .section-label { margin-bottom: 12px; }
+
+.winner-banner-content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.winner-banner-content h2 span {
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.winner-banner-content p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 380px;
+}
+
+/* --- FAQ --- */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.faq-item { background: var(--dark-surface); overflow: hidden; }
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 24px 32px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.faq-q:hover { color: var(--gold); }
+
+.faq-q .icon {
+  font-size: 20px;
+  color: var(--gold);
+  transition: transform 0.3s;
+  min-width: 20px;
+}
+
+.faq-item.open .faq-q .icon { transform: rotate(45deg); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq-a-inner {
+  padding: 0 32px 24px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.faq-item.open .faq-a { max-height: 200px; }
+
+/* --- URGENCY STRIP --- */
+.urgency-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(90deg, var(--brown-deep), var(--brown-rich), var(--brown-deep));
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.urgency-strip svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--gold);
+}
+
+/* --- FINAL CTA --- */
+.final-cta {
+  padding: 100px 24px 120px;
+  text-align: center;
+  position: relative;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(89, 53, 21, 0.25) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.final-cta-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 8vw, 80px);
+  line-height: 0.95;
+  color: var(--cream);
+  max-width: 700px;
+  margin: 0 auto 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.final-cta-title span {
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.final-cta-sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.final-cta .cta-btn {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- FOOTER --- */
+.footer {
+  padding: 32px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(245, 205, 149, 0.06);
+}
+
+.footer p { font-size: 13px; color: var(--text-muted); }
+.footer a { color: var(--gold-dim); text-decoration: none; }
+
+/* --- ANIMATIONS --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-content { order: 1; }
+  .hero-visual { order: 2; }
+
+  .hero-cta-group { align-items: center; }
+
+  .hero-winner-img { max-width: 400px; }
+  .hero-phone-wrapper { width: 130px; bottom: -10px; right: 10px; }
+  .hero-logo-float { width: 100px; top: -5px; left: 10px; }
+
+  .how-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .how-right { order: -1; }
+
+  .phone-mockup { width: 220px; }
+
+  .winner-banner-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .winner-banner-img { max-height: 300px; }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 90px 20px 50px;
+    min-height: 100svh;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    margin: 20px auto 32px;
+  }
+
+  .cta-btn {
+    padding: 16px 36px;
+    font-size: 20px;
+    width: 100%;
+    justify-content: center;
+    max-width: 340px;
+  }
+
+  .section, .how-section {
+    padding: 72px 20px;
+  }
+
+  .value-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-inner { gap: 36px; }
+  .proof-stat .num { font-size: 36px; }
+
+  .steps-container::before { left: 23px; }
+
+  .step-num {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    font-size: 20px;
+  }
+
+  .step { gap: 20px; }
+
+  .perks-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .perk { padding: 24px 20px; }
+
+  .winner-banner { border-radius: 16px; margin: 0 20px; }
+
+  .winner-banner-content { padding: 36px 28px; }
+
+  .nav-badge { display: none; }
+
+  .hero-phone-wrapper { width: 110px; bottom: -5px; right: 0; }
+  .hero-phone-wrapper .mini-phone { border-radius: 14px; padding: 4px; }
+  .hero-phone-wrapper .mini-phone::before { height: 10px; width: 36px; top: 4px; }
+  .hero-phone-wrapper .mini-phone img { border-radius: 10px; }
+  .hero-logo-float { width: 80px; top: 0; left: 10px; }
+}
+
+@media (max-width: 480px) {
+  .perks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    padding: 0 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <img src="assets/logo.png" alt="FateThrow" class="nav-logo-img">
+    <span class="nav-logo-text">FATETHROW</span>
+  </a>
+  <span class="nav-badge">Beta Program</span>
+</nav>
+
+<!-- HERO — split layout with winner photo -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        Now Recruiting Testers
+      </div>
+      <h1 class="hero-title">
+        TEST IT.<br>
+        <span class="line-2">BREAK IT.</span>
+        <span class="line-3">KEEP WHAT YOU WIN.</span>
+      </h1>
+      <p class="hero-sub">
+        We're building Nigeria's first real-money 1v1 gaming platform &mdash; no house edge, no algorithm. Just you vs. your opponent. We need ruthless testers to break it before launch.
+      </p>
+      <div class="hero-cta-group">
+        <a href="https://t.me/fatethrowbetatesters" class="cta-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.492-1.302.48-.428-.013-1.252-.242-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          JOIN THE BETA
+        </a>
+        <p class="cta-note">Free credits on signup &mdash; <span>winnings are 100% yours</span></p>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/logo.png" alt="" class="hero-logo-float">
+      <img src="assets/winner.png" alt="FateThrow player celebrating a win" class="hero-winner-img">
+      <div class="hero-phone-wrapper">
+        <div class="mini-phone">
+          <img src="assets/app-screenshot.png" alt="FateThrow app lobby">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker" aria-hidden="true">
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">CYBERWOLF</span> just won <span class="amount">&#8358;9,500</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">GOLDRUSHER</span> just won <span class="amount">&#8358;10,100</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">PIXELKING</span> won <span class="amount">&#8358;90,350</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">STRIKER_99</span> just won <span class="amount">&#8358;50,000</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">NIGHTHAWK</span> won <span class="amount">&#8358;2,000,000</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">BLAZE_NG</span> just won <span class="amount">&#8358;15,800</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">PHANTOM</span> won <span class="amount">&#8358;34,200</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">ACE_DAYO</span> just won <span class="amount">&#8358;7,750</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">CYBERWOLF</span> just won <span class="amount">&#8358;9,500</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">GOLDRUSHER</span> just won <span class="amount">&#8358;10,100</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">PIXELKING</span> won <span class="amount">&#8358;90,350</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">STRIKER_99</span> just won <span class="amount">&#8358;50,000</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">NIGHTHAWK</span> won <span class="amount">&#8358;2,000,000</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">BLAZE_NG</span> just won <span class="amount">&#8358;15,800</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">PHANTOM</span> won <span class="amount">&#8358;34,200</span></span>
+    <span class="ticker-item"><span class="ticker-star">&starf;</span> <span class="name">ACE_DAYO</span> just won <span class="amount">&#8358;7,750</span></span>
+  </div>
+</div>
+
+<!-- WHY FATETHROW -->
+<section class="section reveal">
+  <div class="section-label">Why FateThrow</div>
+  <h2 class="section-title">NOT ANOTHER BETTING APP.</h2>
+  <p class="section-desc">No house taking a cut. No algorithm deciding your fate. FateThrow is pure 1v1 &mdash; you stake, you play, winner takes all. Escrow-secured. Instant payout.</p>
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-icon">&#9876;</div>
+      <h3>PURE 1V1 COMBAT</h3>
+      <p>No house edge, no spread, no hidden advantage. Two players enter, one player wins. The platform just holds the money &mdash; fairly.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">&#9889;</div>
+      <h3>INSTANT PAYOUTS</h3>
+      <p>Win a game, get your money. No 24-hour waits, no minimum thresholds, no stories. Your naira hits your wallet immediately.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">&#128274;</div>
+      <h3>ESCROW-LOCKED STAKES</h3>
+      <p>Both players' money is locked in escrow before the game starts. No one can run. No one can cheat. The system enforces fairness.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="proof-bar reveal">
+  <div class="proof-inner">
+    <div class="proof-stat">
+      <div class="num">500+</div>
+      <div class="label">Beta Spots Remaining</div>
+    </div>
+    <div class="proof-stat">
+      <div class="num">&#8358;5K</div>
+      <div class="label">Free Credits Per Tester</div>
+    </div>
+    <div class="proof-stat">
+      <div class="num">100%</div>
+      <div class="label">Of Winnings Are Yours</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS — split layout with phone mockup -->
+<section class="how-section reveal">
+  <div class="how-layout">
+    <div class="how-left">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">3 STEPS. ZERO WAHALA.</h2>
+      <p class="section-desc">Getting in is dead simple. No long forms, no KYC hoops to jump through during beta.</p>
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>JOIN OUR TELEGRAM</h3>
+            <p>Tap the button, join the FateThrow Beta Testers channel. That's your entry ticket. All updates, early access links, and bug bounties drop there.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>GET YOUR FREE CREDITS</h3>
+            <p>Once you're in, you'll receive free in-game credits to play with. No deposit needed. We're funding your first battles.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>PLAY, BREAK, WITHDRAW</h3>
+            <p>Challenge real opponents, find bugs, stress-test everything. Win games? That money is real and withdrawable. Break the app? Even better &mdash; we'll reward you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="how-right">
+      <div class="phone-mockup">
+        <div class="phone-glow"></div>
+        <div class="phone-frame">
+          <div class="phone-vol phone-vol-1"></div>
+          <div class="phone-vol phone-vol-2"></div>
+          <div class="phone-vol phone-vol-3"></div>
+          <div class="phone-screen">
+            <img src="assets/app-screenshot.png" alt="FateThrow app — game lobby with live rooms">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WINNER BANNER — full-width excitement -->
+<section class="section reveal" style="padding-bottom: 0;">
+  <div class="winner-banner">
+    <div class="winner-banner-inner">
+      <div class="winner-banner-img">
+        <img src="assets/winner.png" alt="Real player celebrating a FateThrow win">
+      </div>
+      <div class="winner-banner-content">
+        <div class="section-label">Real players. Real money.</div>
+        <h2>WIN GAMES.<br><span>WITHDRAW INSTANTLY.</span></h2>
+        <p>No cap &mdash; every naira you win during beta is yours. Free credits in, real cash out. This is what gaming should feel like.</p>
+        <a href="https://t.me/fatethrowbetatesters" class="cta-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.492-1.302.48-.428-.013-1.252-.242-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          CLAIM YOUR SPOT
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET (3x2) -->
+<section class="section reveal">
+  <div class="section-label">What you get</div>
+  <h2 class="section-title">THE BETA TESTER PACKAGE</h2>
+  <p class="section-desc">This isn't charity. We need real players hammering the platform so it's bulletproof at launch.</p>
+  <div class="perks-grid">
+    <div class="perk">
+      <span class="perk-emoji">&#128176;</span>
+      <h4>FREE GAME CREDITS</h4>
+      <p>Start with free credits. No deposit, no card, no catch.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-emoji">&#128184;</span>
+      <h4>REAL WITHDRAWALS</h4>
+      <p>Everything you win is real money you can pull out.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-emoji">&#128142;</span>
+      <h4>EARLY ACCESS</h4>
+      <p>Be the first on the platform before it goes live to the public.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-emoji">&#127942;</span>
+      <h4>BUG BOUNTIES</h4>
+      <p>Find a bug? Report it. Get rewarded. Break things on purpose.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-emoji">&#128081;</span>
+      <h4>OG STATUS</h4>
+      <p>Beta testers get permanent OG badges and perks at launch.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-emoji">&#128227;</span>
+      <h4>DIRECT LINE</h4>
+      <p>Talk directly to the dev team. Your feedback shapes the product.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section reveal">
+  <div class="section-label">Questions</div>
+  <h2 class="section-title">QUICK ANSWERS</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Is FateThrow gambling?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">No. FateThrow is a skill-based peer-to-peer gaming platform. There's no house, no odds, no algorithm. You compete directly against another real person. The better player wins.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Can I actually withdraw my winnings during beta?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">Yes. Winnings earned during the beta are real and fully withdrawable. The free credits are for playing &mdash; but what you win with them is yours to keep.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        How do I get my free credits?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">Join the Telegram channel. Once you're in, the team will share download links and credit activation instructions directly in the group.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        What kind of games can I play?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">Fast, skill-based 1v1 games. Create your own room or join an existing one. Set your own stake. Custom rules available. We'll share the full game list in the Telegram group.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Is my money safe?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">Every game stake is held in escrow &mdash; locked before the match starts, released to the winner immediately after. No one can touch your money mid-game. Not even us.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY STRIP -->
+<div class="urgency-strip">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+  Limited spots &mdash; Beta closes when we hit capacity
+</div>
+
+<!-- FINAL CTA -->
+<section class="final-cta reveal">
+  <h2 class="final-cta-title">
+    YOUR OPPONENT IS<br>
+    <span>ALREADY WAITING.</span>
+  </h2>
+  <p class="final-cta-sub">
+    Join the Telegram. Grab your free credits. Start winning real money before everyone else even knows this exists.
+  </p>
+  <a href="https://t.me/fatethrowbetatesters" class="cta-btn" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.492-1.302.48-.428-.013-1.252-.242-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    JOIN THE BETA NOW
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 FateThrow. All rights reserved. &mdash; <a href="https://fatethrow.com" target="_blank" rel="noopener">fatethrow.com</a></p>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
